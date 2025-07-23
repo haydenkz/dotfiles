@@ -1,0 +1,125 @@
+{
+  "layer": "top",
+  "position": "top",
+  "height": 32,
+  "spacing": 0,
+  "modules-left": [
+    "hyprland/workspaces",
+    "tray",
+    "custom/lock",
+    "custom/reboot",
+    "custom/power"
+  ],
+  //"modules-center": ["hyprland/window"],
+  "modules-right": [
+    "network",
+    "battery",
+    "bluetooth",
+    "pulseaudio",
+    "backlight",
+    "custom/temperature",
+    "memory",
+    "cpu",
+    "clock"
+  ],
+  "hyprland/workspaces": {
+    "disable-scroll": false,
+    "all-outputs": true,
+    "format": "{icon}",
+    "on-click": "activate",
+    "persistent-workspaces": {
+    "*":[1,2,3,4,5,6,7,8,9]
+    }
+  },
+  "custom/lock": {
+  "format": "<span>  </span>",
+  "on-click": "hyprlock",
+  },
+  "custom/reboot": {
+    "format": "<span>  </span>",
+    "on-click": "systemctl reboot",
+  },
+  "custom/power": {
+    "format": "<span>  </span>",
+    "on-click": "systemctl poweroff",
+  },
+  "network": {
+    "format-wifi": "<span> 󰤨 </span>{essid} ",
+    "format-ethernet": "<span> </span>Wired ",
+    "tooltip-format": "<span> 󰅧 </span>{bandwidthUpBytes}  <span> 󰅢 </span>{bandwidthDownBytes}",
+    "format-linked": "<span> 󱘖 </span>{ifname} (No IP) ",
+    "format-disconnected": "<span>  </span>Disconnected ",
+    "format-alt": "<span> 󰤨 </span>{signalStrength}% ",
+    "interval": 1
+  },
+  "battery": {
+    "states": {
+      "warning": 30,
+      "critical": 15
+    },
+    "format": "<span> {icon} </span>{capacity}% ",
+    "format-charging": " 󱐋 {capacity}%",
+	  "interval": 1,
+    "format-icons": ["󰂎", "󰁼", "󰁿", "󰂁", "󰁹"],
+    "tooltip": true
+  },
+  "pulseaudio": {
+    "format": "<span>{icon}</span>{volume}% ",
+    "format-muted": "<span> 󰖁 </span>0% ",
+    "format-icons": {
+      "headphone": "<span>  </span>",
+      "hands-free": "<span>  </span>",
+      "headset": "<span>  </span>",
+      "phone": "<span>  </span>",
+      "portable": "<span>  </span>",
+      "car": "<span>  </span>",
+      "default": [
+        "<span>  </span>",
+        "<span>  </span>",
+        "<span>  </span>"
+      ]
+    },
+    "on-click-right": "pavucontrol -t 3",
+    "on-click": "pactl -- set-sink-mute 0 toggle",
+  },
+  "custom/temperature": {
+    "exec": "sensors | awk '/^Package id 0:/ {print int($4)}'",
+    "format": "<span>  </span>{}°C ",
+    "interval": 5,
+  },
+  "memory": {
+    "format": "<span>  </span>{used:0.1f}G/{total:0.1f}G ",
+  },
+  "cpu": {
+    "format": "<span>  </span>{usage}% ",
+  },
+  "clock": {
+    "interval": 1,
+    "timezone": "America/Toronto",
+    "format": "<span>  </span>{:%H:%M} ",
+  },
+  "tray": {
+    "icon-size": 17,
+    "spacing": 6
+  },
+  "backlight": {
+    "device": "intel_backlight",
+    "format": "<span> 󰃠 </span>{percent}% ",
+    "format-icons": [
+      "<span> 󰃞 </span>",  // 暗 - 深灰
+      "<span> 󰃝 </span>",  // 中 - 灰
+      "<span> 󰃟 </span>",  // 亮 - 柠檬黄
+      "<span> 󰃠 </span>"   // 最亮 - 金色
+    ]
+  },
+  "bluetooth": {
+    "format": "<span>  </span>{status} ",
+    "format-connected": "<span>  </span>{device_alias} ",
+    "format-connected-battery": "<span>  </span>{device_alias}{device_battery_percentage}% ",
+    "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
+    "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
+    "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+    "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%"
+  }
+}
+
