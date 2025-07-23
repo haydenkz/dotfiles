@@ -8,6 +8,8 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+vim.api.nvim_set_hl(0, 'Normal', { bg = '#0f0f0f' })
+
 require("lazy").setup({
 	spec = {
 		{import="plugins"}
