@@ -140,3 +140,41 @@ hl.bind(
         [[sh -c 'area="$(slurp)" || exit; file="$HOME/Pictures/Screenshot_$(date +%Y-%m-%d_%H-%M-%S).png"; grim -g "$area" "$file" && wl-copy --type image/png < "$file"']]
     )
 )
+
+-- Ctrl + Print: start/stop full-screen recording
+hl.bind(
+    "CTRL + Print",
+    hl.dsp.exec_cmd(
+        [[sh -c '
+            if pgrep -x wl-screenrec >/dev/null; then
+                pkill -INT -x wl-screenrec
+                notify-send "Screen recording saved"
+            else
+                mkdir -p "$HOME/Videos/Recordings"
+                file="$HOME/Videos/Recordings/Recording_$(date +%Y-%m-%d_%H-%M-%S).mp4"
+                wl-screenrec -o eDP-1 -f "$file" &
+                notify-send "Screen recording started" "Press CTRL + Print to stop"
+            fi
+        ']]
+    )
+)
+
+-- Ctrl + Shift + Print: start/stop selected-area recording
+hl.bind(
+    "CTRL + SHIFT + Print",
+    hl.dsp.exec_cmd(
+        [[sh -c '
+            if pgrep -x wl-screenrec >/dev/null; then
+                pkill -INT -x wl-screenrec
+                notify-send "Screen recording saved"
+            else
+                area="$(slurp)" || exit
+                mkdir -p "$HOME/Videos/Recordings"
+                file="$HOME/Videos/Recordings/Recording_$(date +%Y-%m-%d_%H-%M-%S).mp4"
+                wl-screenrec -g "$area" -f "$file" &
+                notify-send "Area recording started" "Press CTRL + SHIFT + Print to stop"
+            fi
+        ']]
+    )
+)
+require("monitors")
