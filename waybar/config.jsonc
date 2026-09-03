@@ -1,0 +1,107 @@
+{
+  "layer": "top",
+  "position": "top",
+  "height": 36,
+  "spacing": 8,
+  "margin-top": 8,
+  "margin-left": 10,
+  "margin-right": 10,
+
+  "modules-left": [
+    "hyprland/workspaces",
+    "mpris",
+    "hyprland/window"
+  ],
+  "modules-center": [
+    "clock"
+  ],
+  "modules-right": [
+    "cpu",
+    "memory",
+    "wireplumber",
+    "network",
+    "battery",
+    "tray"
+  ],
+
+  "hyprland/workspaces": {
+    "format": "{name}",
+    "sort-by": "number",
+    "active-only": false,
+    "all-outputs": true,
+    "move-to-monitor": false
+  },
+
+  "hyprland/window": {
+    "format": "{title}",
+    "max-length": 55,
+    "separate-outputs": true,
+    "rewrite": {
+      "": "Desktop"
+    }
+  },
+
+  "mpris": {
+    "format": "Now {title}",
+    "format-paused": "Paused {title}",
+    "title-len": 28,
+    "artist-len": 0,
+    "album-len": 0,
+    "dynamic-order": ["title"],
+    "tooltip-format": "{artist} — {title}\nLeft: play/pause  Middle: previous  Right: next"
+  },
+
+  "clock": {
+    "format": "{:%a  %b %d   %H:%M}",
+    "format-alt": "{:%Y-%m-%d   %H:%M:%S}",
+    "tooltip": false
+  },
+
+  "cpu": {
+    "format": "CPU {usage}%",
+    "interval": 3,
+    "tooltip": false
+  },
+
+  "memory": {
+    "format": "RAM {percentage}%",
+    "interval": 5,
+    "tooltip-format": "{used:0.1f} GiB used of {total:0.1f} GiB"
+  },
+
+  "wireplumber": {
+    "format": "Vol {volume}%",
+    "format-muted": "Muted",
+    "max-volume": 100,
+    "scroll-step": 5,
+    "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+    "tooltip": true
+  },
+
+  "network": {
+    "format-wifi": "Wi-Fi {signalStrength}%",
+    "format-ethernet": "Ethernet",
+    "format-linked": "Linked",
+    "format-disconnected": "Offline",
+    "tooltip-format-wifi": "{essid}\n{ipaddr}/{cidr}\n{bandwidthDownBytes} down  {bandwidthUpBytes} up",
+    "tooltip-format-ethernet": "{ifname}\n{ipaddr}/{cidr}\n{bandwidthDownBytes} down  {bandwidthUpBytes} up",
+    "tooltip-format-disconnected": "No network connection"
+  },
+
+  "battery": {
+    "states": {
+      "warning": 30,
+      "critical": 15
+    },
+    "format": "Bat {capacity}%",
+    "format-charging": "Bat {capacity}% +",
+    "format-plugged": "Bat {capacity}% AC",
+    "format-full": "Bat full",
+    "tooltip-format": "{timeTo}  {power:.1f} W"
+  },
+
+  "tray": {
+    "icon-size": 17,
+    "spacing": 9
+  }
+}

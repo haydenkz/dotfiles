@@ -8,6 +8,9 @@ hl.monitor({
 
 hl.on("hyprland.start", function()
     hl.exec_cmd("hyprpaper")
+    hl.exec_cmd("$HOME/.config/hypr/waybar-colors.sh")
+    -- Waybar is provided as a user service on this NixOS system.
+    hl.exec_cmd("systemctl --user restart waybar.service")
 end)
 
 -- Applications
@@ -23,6 +26,14 @@ hl.config({
         border_size = 1,
         gaps_in     = 4,
         gaps_out    = 8,
+        ["col.active_border"]   = "rgba(7aa2f7ff)",
+        ["col.inactive_border"] = "rgba(414868aa)",
+    },
+
+    decoration = {
+        rounding         = 7,
+        active_opacity   = 0.90,
+        inactive_opacity = 0.82,
     },
 
     input = {
@@ -64,6 +75,10 @@ hl.bind(mainMod .. " + left",  hl.dsp.focus({ direction = "left" }))
 hl.bind(mainMod .. " + right", hl.dsp.focus({ direction = "right" }))
 hl.bind(mainMod .. " + up",    hl.dsp.focus({ direction = "up" }))
 hl.bind(mainMod .. " + down",  hl.dsp.focus({ direction = "down" }))
+
+-- Alt-Tab window switching
+hl.bind("ALT + TAB", hl.dsp.exec_cmd("hyprctl dispatch cyclenext"))
+hl.bind("ALT + SHIFT + TAB", hl.dsp.exec_cmd("hyprctl dispatch cyclenext prev"))
 
 hl.animation({
     leaf = "global",

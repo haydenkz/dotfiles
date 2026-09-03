@@ -1,0 +1,162 @@
+@import "colors.css";
+
+@define-color red #f7768e;
+@define-color yellow #e0af68;
+@define-color green #9ece6a;
+
+* {
+  min-height: 0;
+  border: none;
+  border-radius: 0;
+  font-family: "Noto Sans", sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+window#waybar {
+  color: @text;
+  background: @bg;
+  border: 1px solid rgba(122, 162, 247, 0.16);
+  border-radius: 12px;
+}
+
+window#waybar.hidden {
+  opacity: 0.2;
+}
+
+#workspaces {
+  margin: 4px 0 4px 5px;
+  padding: 0 4px;
+  background: transparent;
+}
+
+#workspaces button {
+  min-width: 24px;
+  margin: 0 3px;
+  padding: 0 5px;
+  color: @muted;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+#workspaces button:hover {
+  color: @text;
+  background: transparent;
+  border-bottom-color: @muted;
+}
+
+#workspaces button.active {
+  color: @text;
+  background: transparent;
+  border-bottom-color: @blue;
+}
+
+#workspaces button.visible:not(.active) {
+  color: @text;
+  background: transparent;
+  border-bottom-color: @muted;
+}
+
+#workspaces button.urgent {
+  color: @red;
+  background: transparent;
+  border-bottom-color: @red;
+}
+
+#window {
+  margin-left: 5px;
+  color: @muted;
+}
+
+#mpris {
+  margin-left: 8px;
+  padding: 0 8px;
+  color: @blue;
+  background: transparent;
+}
+
+#clock {
+  padding: 0 12px;
+  color: @purple;
+  background: transparent;
+}
+
+#cpu,
+#memory,
+#wireplumber,
+#network,
+#battery,
+#tray {
+  margin: 7px 0;
+  padding: 0 9px;
+  background: transparent;
+  border-left: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 0;
+}
+
+#memory,
+#wireplumber,
+#network,
+#battery {
+  border-left: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+#cpu {
+  color: @blue;
+}
+
+#memory {
+  color: @purple;
+}
+
+#wireplumber {
+  color: @muted;
+}
+
+#network {
+  color: @text;
+}
+
+#wireplumber.muted,
+#network.disconnected {
+  color: @muted;
+}
+
+#battery.charging,
+#battery.plugged {
+  color: @green;
+}
+
+#battery.warning:not(.charging) {
+  color: @yellow;
+}
+
+#battery.critical:not(.charging) {
+  color: @red;
+  animation: blink 0.8s steps(2) infinite;
+}
+
+#tray {
+  margin-right: 5px;
+}
+
+tooltip {
+  color: @text;
+  background: #161822;
+  border: 1px solid rgba(122, 162, 247, 0.35);
+  border-radius: 8px;
+}
+
+tooltip label {
+  padding: 6px;
+}
+
+@keyframes blink {
+  to {
+    color: #10121b;
+    background: @red;
+  }
+}

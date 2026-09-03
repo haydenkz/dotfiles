@@ -1,0 +1,7 @@
+/* Generated from the current wallpaper. */
+@define-color bg rgba(@BG@, 0.94);
+@define-color surface rgba(@SURFACE@, 0.55);
+@define-color text @TEXT@;
+@define-color muted @MUTED@;
+@define-color blue @ACCENT@;
+@define-color purple @SECONDARY@;
