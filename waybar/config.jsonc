@@ -42,13 +42,20 @@
   },
 
   "mpris": {
-    "format": "Now {title}",
-    "format-paused": "Paused {title}",
-    "title-len": 28,
-    "artist-len": 0,
+    "format": "{status_icon} {dynamic}",
+    "format-paused": "{status_icon} {dynamic}",
+    "format-stopped": "",
+    "status-icons": {
+      "playing": "▶",
+      "paused": "Ⅱ",
+      "stopped": ""
+    },
+    "title-len": 24,
+    "artist-len": 16,
     "album-len": 0,
-    "dynamic-order": ["title"],
-    "tooltip-format": "{artist} — {title}\nLeft: play/pause  Middle: previous  Right: next"
+    "dynamic-len": 42,
+    "dynamic-order": ["artist", "title"],
+    "tooltip": false
   },
 
   "clock": {

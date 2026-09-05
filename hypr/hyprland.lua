@@ -23,7 +23,7 @@ local mainMod     = "SUPER"
 hl.config({
     general = {
         layout      = "dwindle",
-        border_size = 1,
+        border_size = 2,
         gaps_in     = 4,
         gaps_out    = 8,
         ["col.active_border"]   = "rgba(7aa2f7ff)",
@@ -34,6 +34,10 @@ hl.config({
         rounding         = 7,
         active_opacity   = 0.90,
         inactive_opacity = 0.82,
+    },
+
+    xwayland = {
+        force_zero_scaling = true,
     },
 
     input = {
@@ -85,6 +89,12 @@ hl.animation({
     enabled = true,
     speed = 1.5,
     bezier = "default",
+})
+
+-- Keep Chrome fully opaque.
+hl.window_rule({
+    match = { class = "google-chrome" },
+    opacity = "1.0 override 1.0 override 1.0 override",
 })
 
 -- Workspaces 1–10
